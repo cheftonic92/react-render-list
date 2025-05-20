@@ -1,0 +1,24 @@
+.list-player__container {
+  display: flex;
+  gap: 1rem;
+  border: 2px solid #ccc;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(16, 16, 81);
+  border-radius: 8px;
+  color: #ccc;
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 400px;;
+}
+
+.list-player__dorsal{
+    background: red !important;
+    width: 5%;
+    padding: 1rem 1.5rem;
+    border-radius: 6px 0 0 6px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: end;
+}

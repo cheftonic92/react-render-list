@@ -1,0 +1,90 @@
+.player-profile__container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;;
+    box-sizing: border-box;
+    align-items: center;
+    border: 2px solid #ccc;
+background-color: rgb(16, 16, 81);
+  border-radius: 8px;
+  color: #ccc;
+}
+.player-profile__info__header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.player-profile__info__header__rol{
+    margin: 0;
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+}
+
+.player-profile__info__header__cell{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+}
+
+.player-profile__info__header__dorsal{
+    font-size: 4rem;
+    font-style: italic;
+    letter-spacing: 0.5rem;
+    margin: 0;
+    font-style: italic;
+
+}
+
+.player-profile__info__datos{
+    font-size: 2.5rem;
+}
+
+.player-profile__info__datos span{
+    font-size: 1.5rem;
+}
+
+.player-profile__image{
+    width:49%;
+}
+.player-profile__image img{
+    width: 100%;
+    height: auto;
+}
+.player-profile__info h2{
+    margin: 0;
+    font-size: 4rem;
+}
+
+.player-profile__info{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.player-profile__details{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-self: flex-start;
+    gap: 5rem;
+}
+
+.player-profile_details__cell{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: flex-end;
+}

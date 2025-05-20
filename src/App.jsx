@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { PlayerList, GKList, DEFList, MIDList, FWDList } from './utils/PlayerList';
+import ListPlayer from './components/ListPlayer/ListPlayer';
+import PlayerProfile from './components/PlayerProfile/PlayerProfile';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedPosition, setSelectedPosition] = useState('Todos');
 
+  const POSITIONS = ['Todos', 'Portero', 'Defensa', 'Centrocampista', 'Delantero'];
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="app">
+        <div className="app__player-list">
+          <h3>Todos los jugadores:</h3>
+          {PlayerList.map((player, dorsal) => (
+            <ListPlayer key={dorsal} text={player.name} dorsal={player.dorsal} />
+          ))}
+        </div>
+        <div className="app__player-profile">
+          <nav className="player-profile__navbar">
+            {POSITIONS.map((pos) => (
+              <div
+                key={pos}
+                onClick={() => setSelectedPosition(pos)}
+                className={selectedPosition === pos ? 'active' : ''}
+              >
+                {pos}
+              </div>
+            ))}
+          </nav>
+
+          <div className="app__player-profile__container">
+            {selectedPosition === 'Todos' &&
+              PlayerList.map((player) => <PlayerProfile key={player.dorsal} player={player} />)}
+
+            {selectedPosition === 'Portero' &&
+              GKList.map((player) => <PlayerProfile key={player.dorsal} player={player} />)}
+
+            {selectedPosition === 'Defensa' &&
+              DEFList.map((player) => <PlayerProfile key={player.dorsal} player={player} />)}
+
+            {selectedPosition === 'Centrocampista' &&
+              MIDList.map((player) => <PlayerProfile key={player.dorsal} player={player} />)}
+
+            {selectedPosition === 'Delantero' &&
+              FWDList.map((player) => <PlayerProfile key={player.dorsal} player={player} />)}
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
