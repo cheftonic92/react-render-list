@@ -5,6 +5,7 @@ import ListPlayer from './components/ListPlayer/ListPlayer';
 import PlayerProfile from './components/PlayerProfile/PlayerProfile';
 import Sidebar from './components/Sidebar/Sidebar';
 import FootballField from './components/FootballField/FootballField';
+import Loader from './components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import { FaPlus } from 'react-icons/fa';
 import { DndProvider } from 'react-dnd';
@@ -17,6 +18,7 @@ function App() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [formAction, setFormAction] = useState('create'); // 'create' o 'update'
   const [editData, setEditData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const POSITIONS = ['Todos', 'Portero', 'Defensa', 'Centrocampista', 'Delantero'];
   const initialLineup = {
@@ -53,14 +55,25 @@ function App() {
   };
 
   const loadPlayers = () => {
+    setLoading(true);
     getPlayers()
-      .then((res) => setPlayers(res.data))
-      .catch((err) => console.error('Error al cargar jugadores:', err));
+      .then((res) => {
+        setPlayers(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error al cargar jugadores:', err);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
     loadPlayers();
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   const handleSelectedPlayer = (player) => () => {
     setSelectedPlayer(player);
