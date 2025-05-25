@@ -3,6 +3,8 @@
   gap: 5rem;
   padding: 3%;
   width: 100vw;
+  background-color: #242424;
+  color: #fff;
 }
 .app__player-list{
   display: flex;
