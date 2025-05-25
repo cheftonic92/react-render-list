@@ -1,0 +1,24 @@
+.football-field {
+  background-image: url('../../assets/footbal-field.avif');
+  background-size: contain;
+  padding: 5rem 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: space-around;
+  gap: 4rem;
+  height: 55rem;
+  align-self: flex-start;
+  
+}
+
+.lineup-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+
+
+

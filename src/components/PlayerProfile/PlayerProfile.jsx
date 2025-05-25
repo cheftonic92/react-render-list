@@ -1,10 +1,18 @@
 import './PlayerProfile.css';
 import { flags } from '../../utils/flags';
 import Flag from 'react-world-flags';
+import { useDrag } from 'react-dnd';
 
 const PlayerProfile = ({ player }) => {
+  const [{ isDragging }, drag] = useDrag({
+    type: 'player',
+    item: { ...player },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
   return (
-    <div className="player-profile__container">
+    <div className="player-profile__container" ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
       <div className="player-profile__info">
         <div className="player-profile__info__header">
           <div>

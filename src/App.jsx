@@ -4,8 +4,11 @@ import { getPlayers, deletePlayer } from './services/api';
 import ListPlayer from './components/ListPlayer/ListPlayer';
 import PlayerProfile from './components/PlayerProfile/PlayerProfile';
 import Sidebar from './components/Sidebar/Sidebar';
+import FootballField from './components/FootballField/FootballField';
 import { ToastContainer } from 'react-toastify';
 import { FaPlus } from 'react-icons/fa';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App() {
   const [players, setPlayers] = useState([]);
@@ -16,6 +19,38 @@ function App() {
   const [editData, setEditData] = useState(null);
 
   const POSITIONS = ['Todos', 'Portero', 'Defensa', 'Centrocampista', 'Delantero'];
+  const initialLineup = {
+    PT: null,
+    LD: null,
+    DFCD: null,
+    DFCI: null,
+    LI: null,
+    MCI: null,
+    MCD: null,
+    MD: null,
+    MI: null,
+    DCI: null,
+    DCD: null,
+  };
+
+  const [lineup, setLineup] = useState(initialLineup);
+  const resetLineup = () => {
+    setLineup(initialLineup);
+  };
+
+  const handleDropPlayer = (position, player) => {
+    setLineup((prev) => ({
+      ...prev,
+      [position]: player,
+    }));
+  };
+
+  const handleClearPosition = (position) => {
+    setLineup((prev) => ({
+      ...prev,
+      [position]: null,
+    }));
+  };
 
   const loadPlayers = () => {
     getPlayers()
@@ -60,62 +95,75 @@ function App() {
 
   return (
     <>
-      <div className="app">
-        <div className="app__player-list">
-          <button
-            onClick={openCreateSidebar}
-            className="add-player-btn btn btn-outline-success me-2 mb-2"
-          >
-            <FaPlus /> Añadir Jugador
-          </button>
-          {players.map((player) => (
-            <ListPlayer
-              key={player.dorsal}
-              text={player.name}
-              dorsal={player.dorsal}
-              handleClick={handleSelectedPlayer(player)}
-              onDelete={() => handleDeletePlayer(player.dorsal)}
-              onEdit={() => openEditSidebar(player)}
-            />
-          ))}
-        </div>
-        <div className="app__player-profile">
-          <nav className="player-profile__navbar">
-            {POSITIONS.map((pos) => (
-              <div
-                key={pos}
-                onClick={() => {
-                  setSelectedPosition(pos);
-                  setSelectedPlayer(null);
-                }}
-                className={selectedPosition === pos ? 'active' : ''}
-              >
-                {pos}
-              </div>
+      <DndProvider backend={HTML5Backend}>
+        <div className="app">
+          <div className="app__player-list">
+            <button
+              onClick={openCreateSidebar}
+              className="add-player-btn btn btn-outline-success me-2 mb-2"
+            >
+              <FaPlus /> Añadir Jugador
+            </button>
+            {players.map((player) => (
+              <ListPlayer
+                key={player.dorsal}
+                text={player.name}
+                dorsal={player.dorsal}
+                player={player}
+                handleClick={handleSelectedPlayer(player)}
+                onDelete={() => handleDeletePlayer(player.dorsal)}
+                onEdit={() => openEditSidebar(player)}
+              />
             ))}
-          </nav>
-
-          <div className="app__player-profile__container">
-            {selectedPlayer ? (
-              <PlayerProfile player={selectedPlayer} key={selectedPlayer.dorsal} />
-            ) : (
-              players
-                .filter((p) =>
-                  selectedPosition === 'Todos' ? true : p.posicion === selectedPosition
-                )
-                .map((player) => <PlayerProfile key={player.dorsal} player={player} />)
-            )}
           </div>
+          <div className="app__player-profile">
+            <nav className="player-profile__navbar">
+              {POSITIONS.map((pos) => (
+                <div
+                  key={pos}
+                  onClick={() => {
+                    setSelectedPosition(pos);
+                    setSelectedPlayer(null);
+                  }}
+                  className={selectedPosition === pos ? 'active' : ''}
+                >
+                  {pos}
+                </div>
+              ))}
+            </nav>
+
+            <div className="app__player-profile__container">
+              {selectedPlayer ? (
+                <PlayerProfile player={selectedPlayer} key={selectedPlayer.dorsal} />
+              ) : (
+                players
+                  .filter((p) =>
+                    selectedPosition === 'Todos' ? true : p.posicion === selectedPosition
+                  )
+                  .map((player) => <PlayerProfile key={player.dorsal} player={player} />)
+              )}
+            </div>
+          </div>
+          <div>
+            <button onClick={resetLineup} className="reset-btn">
+              🔄 Resetear alineación
+            </button>
+            <FootballField
+              lineup={lineup}
+              onDropPlayer={handleDropPlayer}
+              onClearPosition={handleClearPosition}
+            />
+          </div>
+          <Sidebar
+            show={showSidebar}
+            handleClose={closeSidebar}
+            action={formAction}
+            data={editData}
+            handleSave={loadPlayers}
+          />
+          <ToastContainer position="top-right" autoClose={3000} />
         </div>
-      </div>
-      <Sidebar
-        show={showSidebar}
-        handleClose={closeSidebar}
-        action={formAction}
-        data={editData}
-        handleSave={loadPlayers}
-      />
-      <ToastContainer position="top-right" autoClose={3000} />
+      </DndProvider>
     </>
   );
 }

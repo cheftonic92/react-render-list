@@ -1,9 +1,22 @@
 import './ListPlayer.css';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { useDrag } from 'react-dnd';
 
-const ListPlayer = ({ text, dorsal, handleClick, onEdit, onDelete }) => {
+const ListPlayer = ({ text, dorsal, handleClick, player, onEdit, onDelete }) => {
+  const [{ isDragging }, drag] = useDrag({
+    type: 'player',
+    item: { ...player },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
   return (
-    <div className="list-player__container" onClick={handleClick}>
+    <div
+      className="list-player__container"
+      ref={drag}
+      onClick={handleClick}
+      style={{ opacity: isDragging ? 0.5 : 1 }}
+    >
       <div className="d-flex align-items-center">
         <div className="list-player__dorsal">{dorsal}</div>
         <div className="list-player__name">{text}</div>
