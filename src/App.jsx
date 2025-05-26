@@ -8,6 +8,7 @@ import FootballField from './components/FootballField/FootballField';
 import Loader from './components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import { FaPlus } from 'react-icons/fa';
+import { RiResetLeftLine } from 'react-icons/ri';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -111,12 +112,12 @@ function App() {
       <DndProvider backend={HTML5Backend}>
         <div className="app">
           <div className="app__player-list">
-            <button
+            <div
               onClick={openCreateSidebar}
-              className="add-player-btn btn btn-outline-success me-2 mb-2"
+              className="add-player-btn btn btn-outline-success mb-2 d-flex align-items-center justify-content-center gap-2"
             >
               <FaPlus /> Añadir Jugador
-            </button>
+            </div>
             {players.map((player) => (
               <ListPlayer
                 key={player.dorsal}
@@ -158,9 +159,12 @@ function App() {
             </div>
           </div>
           <div>
-            <button onClick={resetLineup} className="reset-btn">
-              🔄 Resetear alineación
-            </button>
+            <div
+              onClick={resetLineup}
+              className="btn btn-outline-danger mb-2 d-flex align-items-center justify-content-center gap-2"
+            >
+              <RiResetLeftLine /> Resetear alineación
+            </div>
             <FootballField
               lineup={lineup}
               onDropPlayer={handleDropPlayer}
