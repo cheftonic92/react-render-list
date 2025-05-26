@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 
-
 const express = require('express');
 const cors = require('cors');
 const { PlayerList } = require('./playerData');
@@ -11,7 +10,6 @@ app.use(express.json());
 
 let players = [... PlayerList];
 
-// Rutas
 app.get('/players', (req, res) => {
   res.json(players);
 });

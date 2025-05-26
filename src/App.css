@@ -6,6 +6,7 @@
   background-color: #242424;
   color: #fff;
 }
+
 .app__player-list{
   display: flex;
   flex-direction: column;
@@ -45,7 +46,6 @@
   color: #544cee;
   text-decoration: underline;
 }
-
 
 .app__player-profile__container{
   display: flex;

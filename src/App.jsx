@@ -72,9 +72,7 @@ function App() {
     loadPlayers();
   }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   const handleSelectedPlayer = (player) => () => {
     setSelectedPlayer(player);

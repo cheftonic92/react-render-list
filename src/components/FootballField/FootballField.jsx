@@ -1,5 +1,4 @@
 // src/components/FootballField/FootballField.jsx
-import React from 'react';
 import './FootballField.css';
 import FieldPosition from '../FieldPosition/FieldPosition'; // Asegúrate de que este componente exista
 
@@ -72,7 +71,6 @@ const FootballField = ({ lineup, onDropPlayer, onClearPosition }) => {
           onClearPosition={onClearPosition}
         />
       </div>
-
       <div className="lineup-row">
         <FieldPosition
           label="PT"

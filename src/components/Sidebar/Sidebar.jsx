@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Offcanvas, Form, FloatingLabel } from 'react-bootstrap';
 import { createPlayer, updatePlayer } from '../../services/api';
 import { toast } from 'react-toastify';
@@ -59,7 +59,7 @@ const Sidebar = ({ show, handleClose, action, data, handleSave }) => {
         toast.success('Jugador actualizado');
       }
       handleClose();
-      handleSave(); // recargar lista
+      handleSave();
     } catch (error) {
       console.error(error);
       toast.error('Error al guardar jugador');
@@ -99,7 +99,7 @@ const Sidebar = ({ show, handleClose, action, data, handleSave }) => {
                 name={field.name}
                 value={player[field.name]}
                 onChange={handleChange}
-                required={field.name !== 'image'} // imagen no obligatoria
+                required={field.name !== 'image'}
               />
             </FloatingLabel>
           ))}
