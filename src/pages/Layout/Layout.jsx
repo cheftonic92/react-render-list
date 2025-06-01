@@ -20,7 +20,7 @@ const Layout = () => {
       <div className="layout-container">
         <Navbar />
         <div className="d-flex w-100">
-          <div className="main-container w-60">
+          <div className="main-container">
             <Outlet />
           </div>
           <div className="football-field-container">
