@@ -1,0 +1,52 @@
+.team-players__text-container{
+    width: 80%;
+    background: blue;
+    font-size: 2rem;
+    display: flex;
+    gap: 5%;
+    border-radius: 0 0 12px 12px;
+    color: #fff;
+}
+
+.team-players{
+    border-radius: 12px;
+}
+
+.team-players img{
+    border-radius: 12px 12px 0 0;
+    width:100%;
+    object-fit: contain;
+}
+
+.dorsal-box{
+    background: red;
+    border-radius: 0 0 0 12px;
+}
+
+.player-profile__navbar{
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1%;
+    width: 100%;
+}
+
+.player-profile__navbar div:hover{
+  color: #544cee;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  transform: scale(1.2);
+}
+
+.active{
+  color: #544cee;
+  text-decoration: underline;
+}
+.team-players__container{
+  cursor: pointer;
+  padding: 0;
+}

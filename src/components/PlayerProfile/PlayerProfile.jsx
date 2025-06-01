@@ -11,6 +11,7 @@ const PlayerProfile = ({ player }) => {
       isDragging: monitor.isDragging(),
     }),
   });
+
   return (
     <div className="player-profile__container" ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
       <div className="player-profile__info">
@@ -18,40 +19,25 @@ const PlayerProfile = ({ player }) => {
           <div>
             <h2>{player.name}</h2>
             <p className="player-profile__info__header__cell">
-              <span className="player-profile__info__header__dorsal">#{player.dorsal}</span>
+              <span className="player-profile__info__header__dorsal">#{player.number}</span>
               <Flag
-                code={flags[player.nacionalidad]}
+                code={flags[player.nationality]}
                 style={{ width: '5rem', height: '5rem' }}
-                fallback={<span>{player.nacionalidad}</span>}
+                fallback={<span>{player.nationality}</span>}
               />
             </p>
-            <p className="player-profile__info__header__rol">{player.rol}</p>
             <div className="player-profile__info__datos">
+              <p className="player-profile__info__datos__cell">{player.position}</p>
               <p className="player-profile__info__datos__cell">
-                {player.edad} <span>años</span>
+                {player.age} <span>años</span>
               </p>
-              <p className="player-profile__info__datos__cell">
-                {player.altura} <span>cm</span>
-              </p>
-              <p className="player-profile__info__datos__cell">
-                {player.peso} <span>kg</span>
-              </p>
+              <p className="player-profile__info__datos__cell">{player.height}</p>
+              <p className="player-profile__info__datos__cell">{player.weight}</p>
             </div>
-          </div>
-          <div className="player-profile__details">
-            <p className="player-profile_details__cell">
-              Llegada: <span>{player.llegada}</span>
-            </p>
-            <p className="player-profile_details__cell">
-              Partidos jugados: <span>{player.partidos_jugados}</span>
-            </p>
-            <p className="player-profile_details__cell">
-              Goles: <span>{player.goles}</span>
-            </p>
           </div>
         </div>
         <div className="player-profile__image">
-          <img src={player.image} alt={player.name} />
+          <img src={player.photo} alt={player.name} />
         </div>
       </div>
     </div>

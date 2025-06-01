@@ -1,0 +1,14 @@
+export const SET_PLAYERS = 'SET_PLAYERS';
+export const SET_SELECTED_PLAYER = 'SET_SELECTED_PLAYER';
+export const DELETE_PLAYER = 'DELETE_PLAYER';
+
+export const SET_TEAMS = 'SET_TEAMS';
+export const SET_CURRENT_TEAM = 'SET_CURRENT_TEAM';
+
+
+export const SET_LINEUP = 'SET_LINEUP';
+export const CLEAR_POSITION = 'CLEAR_POSITION';
+export const RESET_LINEUP = 'RESET_LINEUP';
+
+export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
+export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';

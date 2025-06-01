@@ -21,7 +21,7 @@ const FieldPosition = ({ label, player, onDropPlayer, onClearPosition }) => {
     >
       {player ? (
         <div className="player-slot">
-          <img src={player.image} alt={player.name} />
+          <img src={player.photo} alt={player.name} />
           <span>{player.name}</span>
         </div>
       ) : (

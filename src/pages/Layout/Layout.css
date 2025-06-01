@@ -1,0 +1,16 @@
+.layout-container {
+      display:flex;
+  gap: 5rem;
+  padding:  10% 3%;
+  width: 100vw;
+  background-color: #242424;
+  color: #fff;
+  flex-direction: column;
+}
+
+.main-container{
+      justify-content: center;
+    align-items: flex-start;
+    gap: 2%;
+    width: 60%;
+}

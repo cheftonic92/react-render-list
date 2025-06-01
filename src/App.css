@@ -1,8 +1,9 @@
 .app {
   display:flex;
   gap: 5rem;
-  padding: 3%;
+  padding:  10% 3%;
   width: 100vw;
+  height: 100vh;
   background-color: #242424;
   color: #fff;
 }
